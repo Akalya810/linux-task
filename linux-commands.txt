@@ -1,0 +1,73 @@
+QUESTIONS:
+
+1. Create a folder named “test-dir”. Create an empty file called “nocontent.txt” inside “test-dir” directory. Now add the line “This is VVDN trainee” to “nocontent.txt” file.
+2. Apply permission to the file “nocontent.txt” which should be accessible by anyone accessing the server.
+3. Write shell script to check given word is pallindrome or not
+4. Determine the size of the “test-dir” folder.
+5. Open firefox/chrome from terminal and get the process id.
+6. Display the memory status in terms on mega bytes.
+7. Create a file with name “find.txt” and enter the following content “I Love Ubuntu”.
+Now replace Ubuntu with “Centos” without opening a file
+8. Write a shell script that should create a empty file in “/tmp”directory. The file name should be based on current date and time(2016_04_25_10_30.txt) and it should be created for every 30 mins.
+9. Get the ipaddress of the system
+
+
+ANSWERS:
+
+1.CREATE:
+mkdir test.dir
+cd test.dir
+vi nocontent.txt
+"THIS IS VVDN TRAINEE"
+
+2.PERMISSION:
+chmod 777 nocontent.txt
+
+3.PALINDROME:
+vi palindrome.sh
+chmod 777 palindrome.sh
+
+echo "Enter a string to be entered:"
+read str
+echo
+len=`echo $str | wc -c`
+len=`expr $len - 1`
+i=1
+j=`expr $len / 2`
+while test $i -le $j
+do
+k=`echo $str | cut -c $i`
+l=`echo $str | cut -c $len`
+if test $k != $l
+then
+echo "String is not palindrome"
+exit
+fi
+i=`expr $i + 1`
+len=`expr $len - 1`
+done
+echo "String is palindrome"
+
+4.SIZE OF DIR:
+du -h
+
+5.FIREFOX:
+type -a firefox
+firefox
+process id:pidof firefox
+
+6.SIZE IN MB:
+du | awk '{$1=sprintf("%4.4f",$1/1024)"MB";printf}'
+
+7.REPLACE:
+vi find.txt
+I Love Ubuntu
+sed -i 's/Ubuntu/CentOs/9' find.txt
+To display the first column:awk '{print$1}' find.txt
+
+8.DATE TIME:
+touch $(date +'%Y_%m_%d_%I_%M').txt
+
+9.IP:
+curl ifconfig.me	
+
